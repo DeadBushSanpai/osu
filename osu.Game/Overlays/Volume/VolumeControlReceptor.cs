@@ -21,9 +21,13 @@ namespace osu.Game.Overlays.Volume
         {
             switch (e.Action)
             {
+                case GlobalAction.ToggleMute:
+                    if (!e.Repeat)
+                        ActionRequested?.Invoke(e.Action);
+                    return true;
+
                 case GlobalAction.DecreaseVolume:
                 case GlobalAction.IncreaseVolume:
-                case GlobalAction.ToggleMute:
                 case GlobalAction.NextVolumeMeter:
                 case GlobalAction.PreviousVolumeMeter:
                     ActionRequested?.Invoke(e.Action);
